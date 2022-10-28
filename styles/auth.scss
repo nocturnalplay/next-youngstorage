@@ -1,0 +1,287 @@
+//mixin for the auth page
+@mixin input {
+  border: none;
+  outline: none;
+  margin: 10px;
+  padding: 5px 3px;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 0.48);
+  color: $primary-fg;
+}
+@mixin button {
+  border: none;
+  outline: none;
+  padding: 4px 15px;
+  font-size: 20px;
+  text-transform: capitalize;
+  font-weight: 700;
+  border-radius: 4px;
+  cursor: pointer;
+  background-image: linear-gradient(140deg, $primary-3, $primary-4);
+  color: white;
+}
+@mixin label {
+  font-size: 18px;
+  text-transform: capitalize;
+}
+//auth page style
+.auth {
+  h1 {
+    text-transform: capitalize;
+    transform: translate(0, -30px);
+    color: $primary-fg;
+    font-size: 30px;
+    span {
+      color: $primary-5;
+      font-size: 40px;
+    }
+  }
+  width: 100%;
+  height: 100vh;
+  @include discenter(center, center);
+  background-color: $primary-bg;
+  position: relative;
+  z-index: 1;
+  overflow: auto;
+  .signin-body {
+    z-index: 1;
+    color: $primary-fg;
+    border-radius: 5px;
+    border-top-left-radius: 200px;
+    position: relative;
+    header {
+      font-size: 4rem;
+      text-transform: capitalize;
+      font-weight: 900;
+      position: relative;
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-image: linear-gradient(to left, $primary-5, $primary-3);
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        border-radius: 100% 20px 0 0;
+      }
+    }
+    menu {
+      @include discenter(center, center);
+      margin-top: 10px;
+      .sign-grp {
+        display: flex;
+        flex-direction: column;
+        padding: 2px 15px;
+        label {
+          @include label;
+        }
+        input {
+          @include input;
+          padding-left: 5px;
+        }
+      }
+      button {
+        @include button;
+        margin: 10px;
+      }
+    }
+  }
+  footer {
+    @include discenter(center, center);
+    text-transform: capitalize;
+    background-image: linear-gradient(160deg, $primary-3, $primary-bg);
+    border: none;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 40%;
+    span {
+      margin-top: 5px;
+      b {
+        color: $primary-5;
+        border-bottom: 1px solid $primary-5;
+        cursor: pointer;
+      }
+    }
+    span:nth-child(2) {
+      color: $primary-5;
+      cursor: pointer;
+    }
+  }
+}
+.signup-auth {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $primary-bg;
+  flex-wrap: wrap;
+  position: relative;
+  overflow: hidden;
+  .signup-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    flex-wrap: wrap;
+    overflow: auto;
+    // header {
+    //   @include discenter(center, flex-start);
+    //   color: $primary-fg;
+    //   font-size: 30px;
+    //   padding: 20px;
+    //   text-transform: capitalize;
+    //   width: 50%;
+    //   height: inherit;
+    //   background-color: rgba(0, 0, 0, 0.252);
+    //   b {
+    //     span {
+    //       color: $primary-5;
+    //       font-size: 3.5rem;
+    //       margin-left: -10px;
+    //     }
+    //   }
+    //   span {
+    //     color: $primary-4;
+    //     margin-top: -10px;
+    //   }
+    //   p {
+    //     font-size: 20px;
+    //   }
+    // }
+    .signup-form {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .signup-body {
+        @include discenter(center, flex-start);
+        width: fit-content;
+        padding: 20px;
+        // box-shadow: 1px 0 1000px rgba(255, 255, 255, 0.262);
+        border-radius: 5px;
+        color: $primary-fg;
+        .signin-body-header {
+          font-size: 5rem;
+          text-transform: capitalize;
+          width: 100%;
+          position: relative;
+          z-index: 1;
+          font-weight: 900;
+          &::after {
+            z-index: -1;
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-image: linear-gradient(
+              to right,
+              $primary-bg,
+              $primary-5
+            );
+            width: 100%;
+            height: 100%;
+            border-bottom-left-radius: 100%;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+          }
+        }
+        menu {
+          width: 100%;
+          div {
+            padding: 0 20px;
+            width: 100%;
+            @include discenter(center, flex-start);
+            label {
+              @include label;
+            }
+            input {
+              @include input;
+              width: 100%;
+              padding-left: 5px;
+            }
+          }
+          button {
+            display: block;
+            margin: auto;
+            @include button;
+            margin-top: 20px;
+          }
+        }
+        .signup-body-footer {
+          @include discenter(center, center);
+          padding: 20px;
+          text-transform: capitalize;
+          width: 100%;
+          b {
+            color: $primary-5;
+            border-bottom: 1px solid $primary-5;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
+
+//forgot password page
+.forgot-passwd {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow: auto;
+  background-color: $primary-bg;
+  color: $primary-fg;
+  padding: 20px;
+  h1 {
+    color: $primary-5;
+    text-transform: capitalize;
+    font-size: 3.3rem;
+  }
+  p {
+    font-size: 25px;
+    text-align: center;
+  }
+  .forgot-form {
+    @include discenter(center, center);
+    input {
+      @include input;
+      padding: 10px;
+    }
+    button {
+      @include button;
+    }
+  }
+}
+.reminder {
+  margin-top: 10px;
+  span {
+    text-transform: capitalize;
+    b {
+      margin: 0 3px;
+    }
+    .rem {
+      color: $warning;
+    }
+    .finish {
+      color: $error;
+    }
+  }
+  button {
+    margin-left: 3px;
+    border: none;
+    outline: none;
+    padding: 2px 6px;
+    border-radius: 3px;
+    text-transform: capitalize;
+    cursor: pointer;
+    background-color: $warning;
+    font-weight: 700;
+  }
+}

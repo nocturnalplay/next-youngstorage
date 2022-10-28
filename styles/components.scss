@@ -1,0 +1,42 @@
+@mixin discenter($jc, $ai) {
+  display: flex;
+  flex-direction: column;
+  justify-content: $jc;
+  align-items: $ai;
+}
+
+.alert {
+  color: $primary-fg;
+  padding: 4px 20px;
+  position: absolute;
+  top: -30px;
+  // right: 10px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 16px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+  animation: alert 0.4s ease-in-out forwards;
+  b {
+    margin-left: 10px;
+    font-size: 30px;
+    cursor: pointer;
+  }
+}
+.success {
+  background-color: $success;
+}
+.error {
+  background-color: $error;
+}
+
+@keyframes alert {
+  50% {
+    top: 15px;
+  }
+  100% {
+    top: 10px;
+  }
+}

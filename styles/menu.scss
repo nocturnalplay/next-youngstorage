@@ -1,0 +1,57 @@
+.menu {
+  width: 100%;
+  padding: 2px 6px;
+  background-color: #00171fe4;
+  backdrop-filter: blur(10px);
+  color: $primary-fg;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  .menu-logo {
+    div {
+      position: relative;
+      b {
+        position: absolute;
+        left: 80px;
+        top: 4px;
+        background-image: linear-gradient(220deg, #007ea7, #003459);
+        padding: 4px 10px;
+        border-radius: 4px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 900;
+      }
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      span {
+        text-transform: capitalize;
+        font-size: 11px;
+        font-weight: 600;
+      }
+    }
+  }
+  .menu-li {
+    font-size: 20px;
+    span {
+      margin: 10px;
+      cursor: pointer;
+    }
+    #signin {
+      position: relative;
+      z-index: 1;
+      padding: 1px 10px;
+      border: 2px solid $primary-4;
+      border-radius: 4px;
+      font-weight: 900;
+      text-transform: capitalize;
+      // border-right: 2px solid $primary-5;
+      // border-bottom: 2px solid $primary-5;
+    }
+  }
+}
