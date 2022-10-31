@@ -6,8 +6,8 @@ const nextConfig = {
     domains: ["my.spline.design"],
   },
   env: {
-    API: "http://localhost:3333",
-    URL: "http://localhost:3000",
+    API: "http://172.19.0.1:3333",
+    URL: "http://172.19.0.1:3000",
   },
 };
 

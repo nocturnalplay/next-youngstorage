@@ -2,8 +2,8 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import { Fetcher } from "../api/fetcher";
+// import { useEffect, useState } from "react";
+// import { Fetcher } from "../api/fetcher";
 import Footer from "../components/footer";
 
 export default function Home() {

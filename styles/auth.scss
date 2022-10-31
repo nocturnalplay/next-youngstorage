@@ -258,6 +258,26 @@
       @include button;
     }
   }
+  header {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    #mail-img {
+      width: 400px;
+      margin-top: -100px;
+    }
+    span {
+      color: aliceblue;
+      margin-top: -100px;
+      font-size: 20px;
+      text-transform: capitalize;
+    }
+  }
 }
 .reminder {
   margin-top: 10px;
@@ -283,5 +303,77 @@
     cursor: pointer;
     background-color: $warning;
     font-weight: 700;
+  }
+}
+.forgotpasswd {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: $primary-bg;
+  color: $primary-fg;
+  text-transform: capitalize;
+  header {
+    box-shadow: 0 0 10000px rgba(255, 255, 255, 0.123);
+    padding: 30px 20px;
+    border-radius: 4px;
+    h1 {
+      font-size: 40px;
+      color: $primary-5;
+    }
+    menu {
+      margin-top: 10px;
+      label {
+        display: block;
+        font-size: 18px;
+      }
+      input {
+        border: none;
+        outline: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 20px;
+        background-color: rgba(5, 5, 5, 0.349);
+        color: aliceblue;
+        margin-top: 5px;
+      }
+    }
+    button {
+      margin-top: 20px;
+      border: none;
+      outline: none;
+      font-size: 18px;
+      text-transform: capitalize;
+      padding: 5px 10px;
+      border-radius: 4px;
+      background-color: $primary-4;
+      color: $primary-fg;
+      font-weight: 900;
+      cursor: pointer;
+      display: block;
+      margin: 20px auto;
+    }
+  }
+  #verify-img {
+    width: 400px;
+    margin-top: -150px;
+  }
+  .forgotpasswd-content {
+    display: flex;
+    flex-direction: column;
+    margin-top: -100px;
+    z-index: 1;
+    span {
+      font-size: 20px;
+      text-transform: capitalize;
+      a {
+        color: $primary-5;
+        border-bottom: 1px solid $primary-5;
+        margin-left: 5px;
+      }
+    }
   }
 }

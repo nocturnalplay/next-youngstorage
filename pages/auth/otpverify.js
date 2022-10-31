@@ -25,7 +25,7 @@ export default function Otpverify({ userid }) {
     });
     if (fe.status) {
       setdata("");
-      document.cookie = `token=${fe.data}`;
+      document.cookie = `token=${fe.data};path=/`;
       router.push(`/dashboard`);
     }
     setAlert((a) => ({
