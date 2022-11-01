@@ -78,7 +78,7 @@ export default function ForgotPasswd({ reftoken }) {
         {Alert.success ? (
           <>
             <lottie-player
-              src="/verify1.json"
+              src="/verify.json"
               background="transparent"
               speed="1"
               autoplay

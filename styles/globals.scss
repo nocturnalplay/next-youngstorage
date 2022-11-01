@@ -5,6 +5,8 @@
 @import "components.scss";
 @import "footer.scss";
 @import "auth.scss";
+@import "dashboard.scss";
+@import "animation.scss";
 
 html,
 body {
@@ -12,6 +14,7 @@ body {
   margin: 0;
   font-family: "Kanit", sans-serif;
   scroll-behavior: smooth;
+  background-color: $primary-bg;
 }
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {

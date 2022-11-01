@@ -8,7 +8,7 @@ export async function middleware(req) {
     let he = req.headers.get("cookie");
     // This logic is only applied to /dashboard
     const fe = await Fetcher({
-      path: `/checkuser?${he}`,
+      path: `/checkuser?${he.split(";")[0]}`,
       method: "GET",
     });
     if (fe.status) {
