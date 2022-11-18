@@ -93,7 +93,8 @@ function LabFunction(props) {
           </span>
         </div>
         <div className="lab-function-button">
-          
+          <button id="deploy">deploy</button>
+          <button id="d-status">stoped</button>
         </div>
         <p>to connect our lab through vs code in web</p>
         <button className="lab-vscode">
