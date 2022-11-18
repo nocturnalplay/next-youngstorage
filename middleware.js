@@ -3,33 +3,56 @@ import { NextResponse } from "next/server";
 import { Fetcher } from "./api/fetcher";
 
 export async function middleware(req) {
-  if (req.nextUrl.pathname === "/") 
-  {
+  try {
     let he = req.headers.get("cookie");
-    // This logic is only applied to /dashboard
-    const fe = await Fetcher({
-      path: `/checkuser?${he.split(";")[0]}`,
-      method: "GET",
-    });
-    if (fe.status) {
-      return NextResponse.redirect(`${process.env.URL}/dashboard`);
-    } else {
-      return NextResponse.next();
+    if (!he) {
+      return NextResponse.redirect(`${process.env.URL}`)
     }
-  }
-  else if (req.nextUrl.pathname.startsWith("/dashboard")) 
-  {
-    let he = req.headers.get("cookie");
-    // This logic is only applied to /dashboard
-    const fe = await Fetcher({
-      path: `/checkuser?${he}`,
-      method: "GET",
-    });
-    if (fe.status) {
-      return NextResponse.next();
-    } else {
-      return NextResponse.redirect(`${process.env.URL}/auth/signin`);
+    let co = he.split(";");
+    co = co.map((a) => a.split("="));
+    co = co.filter((a) => a[0] === "token");
+    let token = co[0][1];
+
+    if (req.nextUrl.pathname === "/") {
+      // This logic is only applied to /dashboard
+      const fe = await Fetcher({
+        path: `/checkuser?token=${token}`,
+        method: "GET",
+      });
+      if (fe.status) {
+        return NextResponse.redirect(`${process.env.URL}/dashboard`);
+      } else {
+        return NextResponse.next();
+      }
+    } else if (req.nextUrl.pathname.startsWith("/dashboard")) {
+      // This logic is only applied to /dashboard
+      const fe = await Fetcher({
+        path: `/checkuser?token=${token}`,
+        method: "GET",
+      });
+      if (fe.status) {
+        return NextResponse.next();
+      } else {
+        return NextResponse.redirect(`${process.env.URL}/auth/signin`);
+      }
+    } else if (
+      req.nextUrl.pathname === "/auth/signin" ||
+      req.nextUrl.pathname === "/auth/otpverify"
+    ) {
+      // This logic is only applied to /dashboard
+      const fe = await Fetcher({
+        path: `/checkuser?token=${token}`,
+        method: "GET",
+      });
+      if (fe.status) {
+        return NextResponse.redirect(`${process.env.URL}/dashboard`);
+      } else {
+        return NextResponse.next();
+      }
     }
+  } catch (error) {
+    console.log(error.message);
+    
   }
 }
 

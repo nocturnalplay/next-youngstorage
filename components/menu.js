@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { UsermenuContext } from "../pages/dashboard";
 import Tooltip from "../components/tooltip";
 import { Fetcher } from "../api/fetcher";
-
+import { useRouter } from "next/router";
 export default function Menu() {
   return (
     <div className="menu">
@@ -133,6 +133,7 @@ export const DashboardMenu = () => {
   const [udetails, setUdetails] = useState(false);
   const [username, setusername] = useState("");
   const [loading, setloading] = useState(true);
+  const router = useRouter();
 
   const Userdetails = async () => {
     setUdetails((a) => !a);
@@ -149,8 +150,10 @@ export const DashboardMenu = () => {
     setloading(false);
   };
   const Logout = async () => {
-    const fe = await Fetcher({ path: "/signout", method: "GET", });
-    console.log(fe);
+    const fe = await Fetcher({ path: "/signout", method: "GET" });
+    if (fe.status) {
+      router.push("/");
+    }
   };
   return (
     <div className="dashboard-menu">
