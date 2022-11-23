@@ -1,4 +1,4 @@
-import { useState, createContext } from "react";
+import { useState, createContext, useRef, useEffect } from "react";
 import { DashboardUserMenu, DashboardMenu } from "../../components/menu";
 import Home from "../../components/dashboard/home";
 import Vpn from "../../components/dashboard/vpn";
@@ -9,8 +9,15 @@ export const UsermenuContext = createContext();
 
 export default function Dashboard() {
   const [usermenu, setusermenu] = useState("home");
+  const ws = useRef()
+  //inilized the websocket from the client
+  useEffect(() => {
+    return () => {
+      ws.current = new WebSocket(`${process.env.WS}`)
+    }
+  }, [])
   return (
-    <UsermenuContext.Provider value={{ usermenu, setusermenu }}>
+    <UsermenuContext.Provider value={{ usermenu, setusermenu, ws }}>
       <div className="dashboard">
         <DashboardMenu />
         <DashboardUserMenu />

@@ -6,7 +6,7 @@ export async function middleware(req) {
   try {
     let he = req.headers.get("cookie");
     if (!he) {
-      return NextResponse.redirect(`${process.env.URL}`)
+      return NextResponse.next()
     }
     let co = he.split(";");
     co = co.map((a) => a.split("="));
