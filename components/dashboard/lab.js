@@ -6,7 +6,7 @@ import { UsermenuContext } from "../../pages/dashboard";
 const labs = [
   {
     text: "ubuntu",
-    src: "ubuntu.jpg",
+    src: "ubuntu-logo.png",
     disp: "coding lab",
   },
   {
@@ -20,6 +20,7 @@ export default function Lab() {
   const viewChanger = (e, value) => {
     setSelectLab(value);
   };
+  console.log("parent",selectLab)
   return (
     <div className="dashboard-lab">
       {selectLab ? (
@@ -60,7 +61,27 @@ function Box(props) {
 function LabFunction(props) {
   const umenu = useContext(UsermenuContext);
   const data = labs.filter((a) => a.text === props.lab);
+  const [docker, setDocker] = useState({
+    dockerip: "",
+    dockerwgip: "",
+    sshpassword: "",
+    sshusername: "",
+    userip: "",
+    _id: "",
+  })
   let i = 0
+  useEffect(() => {
+    return () => {
+      console.log(props.lab)
+      if (props.lab != null) {
+        if (umenu.ws.current.readyState > 0) {
+          umenu.ws.current.send(JSON.stringify({ event: "labdetail" }));
+        } else {
+          alert("Please check your Socket Connection");
+        }
+      }
+    }
+  }, [])
   umenu.ws.current.onmessage = (e) => {
     const { event, msg } = JSON.parse(e.data)
     const dp = document.getElementById("deploy")
@@ -68,15 +89,33 @@ function LabFunction(props) {
     switch (event) {
       case "deploy": {
         dp.innerHTML = "Deploying"
+        log.innerHTML += `<br />$ ${msg}`;
         break
       }
-      case "deploy end": {
+      case "deploy-end": {
         dp.innerHTML = "Redeploy"
+        log.innerHTML += `<br />$ ${msg}`;
+        break
+      }
+      case "labdetail": {
+        log.innerHTML += `<br />$ ${msg._id}`;
+        setDocker(() => msg)
+        console.log(msg)
         break
       }
     }
-    log.innerHTML += `<br />$ ${msg}`;
     autobottom();
+  }
+  //copy to clipboard
+  const copyClipBoard = () => {
+    var cp = document.getElementById("dockerwgip").innerHTML
+    // cp.setSelectionRange(0, 99999); // For mobile devices
+    // Copy the text inside the text field
+    try {
+      navigator.clipboard.writeText(cp);
+    } catch (err) {
+      console.error('Unable to copy to clipboard', err);
+    }
   }
   //auto scroll height to bottom of the available
   const autobottom = () => {
@@ -106,13 +145,13 @@ function LabFunction(props) {
         <Image
           src={`/` + data[0].src}
           alt={data[0].text}
-          height={250}
-          width={350}
+          height={100}
+          width={100}
         />
         <div className="lab-ip">
           <span>IP address</span>
-          <span>127.0.0.1</span>
-          <span>
+          <span id="dockerwgip">{docker.dockerwgip ? docker.dockerwgip : "plese deploy your lab"}</span>
+          <span onClick={copyClipBoard} >
             <b>
               <Image
                 className="lab-ip-copy"

@@ -1,14 +1,10 @@
 import "../styles/globals.scss";
 import Menu from "../components/menu";
 import { StrictMode, useEffect, useState } from "react";
-import Footer from "../components/footer";
-import { Fetcher } from "../api/fetcher";
-import { useRouter } from "next/router";
 
 function MyApp({ Component, pageProps }) {
   const [menustate, setstate] = useState(false);
   const [loading, setloading] = useState(true);
-  const router = useRouter();
 
   useEffect(() => {
     console.log("_app happens");
